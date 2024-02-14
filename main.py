@@ -4,10 +4,12 @@ from gerador_script_teste import *
 from tools import *
 
 def main():
-    casos_uso = gerar_caso_uso(MODELO_GPT_3_5)
+    pedido_usuario = input("Digite um caso de uso: ")
+
+    casos_uso = gerar_caso_uso(pedido_usuario, MODELO_GPT_3_5)
     print("\nCaso de Uso - Não Refinado:\n", casos_uso)
 
-    casos_uso = gerar_caso_uso(MODELO_REFINADO)
+    casos_uso = gerar_caso_uso(pedido_usuario, MODELO_REFINADO)
     print("\nCaso de Uso - Refinado:\n", casos_uso)
 
 
