@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body {
+    font-family: "Inter", sans-serif;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif; 
+    background: linear-gradient(#2C4154, #000516);
+    background-image: url('../img/top.png'), linear-gradient(#2C4154, #000516);
+    background-repeat: no-repeat, repeat;
+    background-position: center, center;
+    background-size: contain, cover;
+    background-attachment: scroll, fixed;
+}
+
+.logo{
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    margin-bottom: 2rem;
+}
+
+main {
+    background: #000516;
+    padding: 0.5rem 2.5rem 2.5rem 2.5rem;
+    border: 0.08rem solid #E9394E;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 0.5rem #E9394E, 
+                0 0 0.9rem #E9394E, 
+                0 0 1.2rem #E9394E; 
+}
+
+section h2 {
+    font-size: 1rem;
+    color: white;
+    border-bottom: 0.08rem solid #000;
+    padding-bottom: 0.7rem;
+    margin-bottom: 1.2rem;
+    margin-top: 1.2rem;
+}
+
+.input-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: white;
+    margin-bottom: 0.8rem;
+    font-size: 0.8rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    padding: 0.7rem;
+    border: 0.1rem solid #e19aa2;
+    border-radius: 0.5rem;
+    
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #E9394E;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    padding: 0.7rem 1.2rem;
+    border: 0.08rem solid #000;
+    background: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #f0f0f0;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+.botao-login{
+    background-color: #E9394E;
+    color: white;
+    border-radius: 0.5rem;
+    border: 0 solid #E9394E;
+    padding: 0.8rem 3rem;
+}
+
+.footer{
+    padding-top: 1rem;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    min-height: 32px;
+    background-color: #2C4154;
+}
+
+.mensagem-erro{
+    color: #E9394E;
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+}

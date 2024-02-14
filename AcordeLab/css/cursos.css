@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif; 
+    background: linear-gradient(#2C4154, #000516);
+    padding: 0 4rem;
+    background-image: url('../img/top.png'), linear-gradient(#2C4154, #000516);
+    background-repeat: no-repeat, repeat;
+    background-position: center, center;
+    background-size: contain, cover;
+    background-attachment: scroll, fixed;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.logo-img{
+    max-width: 200px; 
+    height: auto; 
+    margin: 2rem;
+    width: 15vw; 
+    min-width: 100px; 
+}
+
+.meu-perfil{
+    color: white;
+    font-family: "Inter", sans-serif;
+    margin-right: 1rem;
+}
+
+.profile-container{
+    margin: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.group-name {
+    border-bottom: 1px solid #000;
+    padding: 1rem;
+    text-align: center;
+}
+
+.curso-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1rem;
+    width: 100%;
+}
+
+.curso-header {
+    align-self: center;
+    background-color: #D9D9D9;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 70%;
+    border-radius: 0.5rem;
+    overflow: hidden; 
+    border: 0.2rem solid #E9394E;
+    padding: 0; 
+    box-shadow: 0 0 0.5rem black, 0 0 0.9rem gray, 0 0 1.2rem black;
+    min-height: 40vh;
+    
+}
+
+.curso-header h1{
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: -1px;
+    font-family: "Inter", sans-serif;
+    color: #2C4154;
+}
+
+.nivel-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    color: #2C4154;
+    margin-top: 4rem;
+}
+
+.nivel-curso{
+    padding: 0.5rem;
+    color: white;
+}
+
+.instrumento-curso{
+    border: 0.02rem solid #2C4154;
+    padding: 0.5rem;
+    color: #2C4154;
+    margin-left: 1rem;
+}
+
+.descricao-curso{
+    font-size: 2rem;
+    margin-top: .5rem;
+    margin-left: 0.5rem;
+    letter-spacing: 0.002rem;
+}
+
+.tempo-curso{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    letter-spacing: 0.002rem;
+}
+
+.imagem-curso {
+    width: 30%;
+    height: auto; 
+    object-fit: cover;
+    object-position: left center;
+    overflow: hidden;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.curso-info {
+    display: flex;
+    flex-direction: column;
+
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+.curso-info h1 {
+    margin: 0;
+    font-size: 3rem;
+}
+
+.progresso-container{
+    margin-top: 0.7rem;
+}
+
+.progresso-container label {
+    font-size: 0.8rem;
+}
+
+
+.progresso-container progress {
+    width: 100%; 
+    height: 20px;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+         appearance: none; 
+    box-shadow: 0 0.5rem 0.4rem rgba(0, 0, 0, 0.1);
+    border: 0.02rem solid #E9394E;
+    
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: #D9D9D9; 
+}
+
+progress[value]::-webkit-progress-value {
+    background-color: #E9394E; 
+}
+
+progress[value]::-moz-progress-bar { 
+    background-color: #E9394E; 
+}
+
+.botao-continuar {
+    background-color: #2C4154;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    max-width: 25%;
+    align-self: flex-end;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+}
+
+.curso-conteudo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    overflow: scroll;
+}
+
+.conteudo-item {
+    font-family: "Inter", sans-serif;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 10%;
+    margin: 2.5%;
+    padding: 0.5rem;
+    padding-top: 0 ;
+    background-color: #f9f9f9;
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+    border: 0.1rem solid #E9394E;
+    flex-shrink: 0;
+    color: #2C4154;
+}
+
+.conteudo-item p{
+    margin-bottom: 0.5rem;
+    color: #2C4154;
+}
+
+.titulo-video{
+    font-family: "Inter", sans-serif;
+    color: #2C4154;
+    font-weight: bold;
+    margin-top: 0.9rem;
+    font-size: 1.2rem;
+}
+
+.conteudo-thumbnail {
+    width: calc(100% + 2.2rem);
+    height: auto;
+    margin-left: -1rem; 
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px;
+    object-fit: cover;
+    aspect-ratio: 16 / 9; 
+    border-bottom: 0.8rem solid #E9394E;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.footer{
+    padding-top: 1rem;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    min-height: 32px;
+    background-color: #2C4154;
+}
+
+.avancado{
+    background-color: #E9394E;
+    border: 0.1rem solid #E9394E;
+    
+}
+
+.intermediario{
+    background-color: #2C4154;
+    border: 0.1rem solid #2C4154;
+}
+
+.iniciante{
+    background-color: #0086FF;
+    border: 0.1rem solid #0086FF;
+}

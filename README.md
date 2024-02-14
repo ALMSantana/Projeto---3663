@@ -18,8 +18,10 @@ source curso_3_openai/bin/activate
 
 ### Instalação das Bibliotecas
 
+- O Faiss para Mac apresentou compatibilidade apenas para a versão 3.11 do python ou inferior
+
 ```bash
-pip install numpy openai python-dotenv tiktoken opencv-python
+pip install numpy openai python-dotenv tiktoken opencv-python selenium faiss-cpu
 ```
 
 ## 📚 Referências de Leitura

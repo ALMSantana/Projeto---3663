@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index - AcordeLab</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js"></script>
+</head>
+<body>
+    <header>
+        <img class="logo" src="img/logo_acorde_lab.png" alt="Acorde Lab">
+    </header>
+    <main>
+        <section>
+            <h2>Login</h2>
+            <form id="formulario_login">
+                <fieldset class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </fieldset>
+                <fieldset class="input-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </fieldset>
+                <p class="mensagem-erro">E-mail ou senha incorretos. Tente novamente.</p>
+                <div class="form-actions">
+                    <a href="#">Recuperar senha</a>
+                    <input class="botao-login" type="submit" value="Login"/>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <h2 class="footer">© Alura | 2024</h2>
+    </footer>
+</body>
+</html>

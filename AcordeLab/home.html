@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - AcordeLab</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="js/home.js"></script>
+</head>
+<body>
+    <header>
+        <img class="logo-img" src="img/logo_acorde_lab.png" alt="Acorde Lab">
+        <div class="profile-container">
+            <a class="meu-perfil" href="#">Meu Perfil</a>
+            <img src="img/noun-profile-6521953 1.png" alt="">
+        </div>
+    </header>
+    <div class="search">
+        <input type="search" placeholder="Busca">
+        <img class="lupa" src="img/lupa.png" alt="Lupa">
+    </div>
+    <nav class="segmented-buttons">
+
+        <input type="radio" id="violao" name="instrumento" value="violao">
+        <label for="violao">Violão</label>
+
+        <input type="radio" id="piano" name="instrumento" value="piano">
+        <label for="piano">Piano</label>
+
+        <input type="radio" id="guitarra" name="instrumento" value="guitarra">
+        <label for="guitarra">Guitarra</label>
+    </nav>
+    <main>
+        <section class="course-grid">
+            <div class="course-card violao selecionar-curso">
+                <img src="img/violao_1.png" alt="Imagem do Curso">
+                <h3 class="nome-curso">Introdução ao Violão</h3>
+                <p class="iniciante nivel-curso">Iniciante</p>
+                <p class="tempo-curso t-iniciante">3h</p>
+                <p class="instrumento-curso" hidden>Violão</p>
+            </div>
+            <div class="course-card violao selecionar-curso">
+                <img src="img/violao_2.png" alt="Imagem do Curso">
+                <h3 class="nome-curso">Acordes Intermediários no Violão</h3>
+                <p class="intermediario nivel-curso">Intermediário</p>
+                <p class="tempo-curso t-intermediario">6h</p>
+                <p class="instrumento-curso" hidden>Violão</p>
+            </div>
+            <div class="course-card violao selecionar-curso">
+                <img src="img/violao_3.png" alt="Imagem do Curso">
+                <h3 class="nome-curso">Violão Avançado: pestana, acordes e solo</h3>
+                <p class="avancado nivel-curso">Avançado</p>
+                <p class="tempo-curso t-avancado">9h</p>
+                <p class="instrumento-curso" hidden>Violão</p>
+            </div>
+            <div class="course-card piano selecionar-curso">
+                <img src="img/piano_1.png" alt="Imagem do Curso">
+                <h3 class="nome-curso">Introdução aos primeiros acordes com Piano</h3>
+                <p class="iniciante nivel-curso">Iniciante</p>
+                <p class="tempo-curso t-iniciante">4h</p>
+                <p class="instrumento-curso" hidden>Piano</p>
+            </div>
+            <div class="course-card piano selecionar-curso">
+                <img src="img/piano_2.png" alt="Imagem do Curso">
+                <h3 class="nome-curso">Piano Intermediário: Clave de Fá</h3>
+                <p class="intermediario nivel-curso">Intermediário</p>
+                <p class="tempo-curso t-intermediario">5h</p>
+                <p class="instrumento-curso" hidden>Piano</p>
+            </div>
+            <div class="course-card piano selecionar-curso">
+                <img src="img/piano_3.png" alt="Imagem do Curso">
+                <h3 class="nome-curso">Piano Avançado: Do clássico ao moderno</h3>
+                <p class="avancado nivel-curso">Avançado</p>
+                <p class="tempo-curso t-avancado">8h</p> 
+                <p class="instrumento-curso" hidden>Piano</p>
+            </div>
+            <div class="course-card guitarra selecionar-curso">
+                <img src="img/guitarra_1.png" alt="Imagem do Curso">
+                <h3 class="nome-curso">Primeiros acordes com a Guitarra</h3>
+                <p class="iniciante nivel-curso">Iniciante</p>
+                <p class="tempo-curso t-iniciante">4h</p>
+                <p class="instrumento-curso" hidden>Guitarra</p>
+            </div>
+            <div class="course-card guitarra selecionar-curso">
+                <img src="img/guitarra_2.png" alt="Imagem do Curso">
+                <h3 class="nome-curso">Solos e Acordes Avançados na Guitarra</h3>
+                <p class="avancado nivel-curso">Avançado</p>
+                <p class="tempo-curso t-avancado">9h</p>
+                <p class="instrumento-curso" hidden>Guitarra</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <h2 class="footer">© Alura | 2024</h2>
+    </footer>
+</body>
+</html>
