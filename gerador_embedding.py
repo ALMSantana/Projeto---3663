@@ -2,6 +2,7 @@ from openai import OpenAI
 from tools import *
 from dotenv import load_dotenv
 import os
+import json
 
 load_dotenv()
 
@@ -45,3 +46,35 @@ def gerar_meta_descricao(documento, nome_arquivo, modelo = MODELO_GPT_4):
     )
 
     return resposta.choices[0].message.content
+
+def resgatar_documentos(caminho_metadados):
+    json_string = carrega(caminho_metadados)
+    json_metadados = json.loads(json_string)
+
+    descricoes = []
+    metadados = []
+
+    for objeto in json_metadados:
+        descricoes.append(objeto["meta_descricao"])
+        metadados.append(objeto)
+    
+    return descricoes, metadados
+
+def processar_documentos(diretorio_documentos="AcordeLab"):
+    print("Processando documentos ...")
+
+    extensoes_permitidas = ('.html', '.css', '.js')
+    metadados = []
+    descricoes = []
+
+    for dirpath, dirnames, filenames in os.walk(diretorio_documentos):
+        for arquivo in filenames:
+            if arquivo.endswith(extensoes_permitidas):
+                caminho_completo = os.path.join(dirpath, arquivo)
+                with open(caminho_completo, 'r', encoding='utf-8') as arquivo_lido:
+                    texto_completo = arquivo_lido.read()
+                meta_descricao = gerar_meta_descricao(documento=texto_completo, nome_arquivo=arquivo)
+                metadados.append({'documento': arquivo, 'meta_descricao': meta_descricao, 'caminho': caminho_completo})
+                descricoes.append(meta_descricao)
+
+    return descricoes, metadados
