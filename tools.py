@@ -1,6 +1,8 @@
 MODELO_REFINADO = "ft:gpt-3.5-turbo-1106:alura-content::8sFPyajg"
 MODELO_GPT_3_5 = "gpt-3.5-turbo"
 MODELO_GPT_4 = "gpt-4-0125-preview"
+MODELO_EMBEDDING = "text-embedding-3-small"
+
 STATUS_COMPLETED = "completed" 
 STATUS_FAILED = "failed"
 
