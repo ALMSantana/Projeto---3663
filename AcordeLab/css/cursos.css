@@ -198,8 +198,9 @@ progress[value]::-moz-progress-bar {
 .curso-conteudo {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    overflow: scroll;
+    width: 95%;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
 }
 
 .conteudo-item {
@@ -274,4 +275,20 @@ a{
 .iniciante{
     background-color: #0086FF;
     border: 0.1rem solid #0086FF;
+}
+
+::-webkit-scrollbar{
+    width: 0.3rem;
+}
+
+::-webkit-scrollbar-track{
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: #555;
 }
