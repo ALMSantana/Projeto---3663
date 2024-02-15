@@ -1,4 +1,3 @@
-```python
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -8,7 +7,7 @@ import time
 # Configurações do driver do navegador
 options = Options()
 options.headless = False  # Executar o navegador em modo não visual (headless) ou não
-service = Service(executable_path="/path/to/chromedriver")  # Atualize para o caminho do seu Chromedriver
+service = Service(executable_path="driver/chromedriver.exe")  # Atualize para o caminho do seu Chromedriver
 
 # Inicializa o WebDriver
 driver = webdriver.Chrome(service=service, options=options)
@@ -41,14 +40,14 @@ test_cases = [
         "email": "",
         "senha": "",
         "esperado": "falho",
-        "mensagem_erro": "Campos vazios. Tente novamente."
+        "mensagem_erro": "E-mail ou senha incorretos. Tente novamente."
     },
 ]
 
 for test_case in test_cases:
     # Navegar até a página de login
-    driver.get("http://enderecodaaplicacao.com/login")
-    
+    driver.get("https://almsantana.github.io/")
+    time.sleep(3)
     # Preenche o campo de email
     email_field = driver.find_element(By.ID, "email")
     email_field.clear()
@@ -79,4 +78,3 @@ for test_case in test_cases:
 
 # Fecha o navegador após a execução de todos os testes
 driver.quit()
-```
