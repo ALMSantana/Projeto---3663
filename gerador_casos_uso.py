@@ -7,22 +7,49 @@ load_dotenv()
 
 cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-def gerar_caso_uso(prompt, modelo=MODELO_REFINADO):
-    prompt_sistema = f""""
-        Você é um especialista em desenvolver casos de uso. Você deve adotar o padrão abaixo para gerar seu caso de uso:
+def gerar_caso_uso(prompt, assistente, thread, modelo=MODELO_GPT_4):
+    pergunta = f"""Gere um caso de uso para: {prompt}. 
+        Para isso, busque nos arquivos associados a você o conteúdo # Exemplos de Caso de Uso
+        (no arquivo exemplos_casos_uso.txt)
 
-         *Nome da Persona*, em *contexto do app*, precisa realizar *tarefa no app* no aplicativo. Logo, *Beneficio Esperado*, para isso ela *descrição detalhada da tarefa realizada*.
+        Adote o formato de saída abaixo.
 
-        Considere os dados de entrada sugeridos pelo usuário e gere o caso de uso no formato adequado.
-    """
+        # Formato de Saída
 
-    resposta = cliente.chat.completions.create(
-        model=modelo,
-        messages=[
-            {"role": "system", "content": prompt_sistema},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.5
+        *Nome da Persona*, em *contexto do app*, precisa realizar *tarefa no app* no aplicativo. Logo, *Beneficio Esperado*, para isso ela *descrição detalhada da tarefa realizada*.
+
+        """
+    
+    cliente.beta.threads.messages.create(
+        thread_id=thread.id, 
+        role = "user",
+        content = pergunta 
     )
 
-    return resposta.choices[0].message.content
+    run = cliente.beta.threads.runs.create(
+        thread_id=thread.id,
+        assistant_id=assistente.id,
+        tools=[{"type":"retrieval"}],
+        model=modelo
+    )
+
+    ran = cliente.beta.threads.runs.retrieve(
+        thread_id=thread.id,
+        run_id=run.id
+    )
+
+    while ran.status != STATUS_COMPLETED:
+        print("Gerando Caso: ", ran.status)
+        ran = cliente.beta.threads.runs.retrieve(
+            thread_id=thread.id,
+            run_id=run.id
+        )
+
+        if ran.status == STATUS_FAILED:
+            raise Exception("OpenAI Falhou!")
+        
+    mensagens = cliente.beta.threads.messages.list(
+        thread_id = thread.id
+    )
+
+    return mensagens.data[0].content[0].text.value
