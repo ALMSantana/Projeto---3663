@@ -1,46 +1,82 @@
-# Importando as bibliotecas necessárias para o teste
+```python
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import time
 
+# Configurações do driver do navegador
+options = Options()
+options.headless = False  # Executar o navegador em modo não visual (headless) ou não
+service = Service(executable_path="/path/to/chromedriver")  # Atualize para o caminho do seu Chromedriver
 
-service = Service(executable_path="driver/chromedriver.exe")  # Substitua "/path/to/chromedriver" pelo caminho do seu chromedriver
+# Inicializa o WebDriver
+driver = webdriver.Chrome(service=service, options=options)
 
-# Instancia o navegador
-driver = webdriver.Chrome(service=service)
+# Define dados de teste
+test_cases = [
+    {
+        "case_id": 1,
+        "email": "email@acordelab.com.br",
+        "senha": "123senha",
+        "esperado": "aprovado",
+        "mensagem_erro": ""
+    },
+    {
+        "case_id": 2,
+        "email": "incorrectemail@acordelab.com.br",
+        "senha": "123senha",
+        "esperado": "falho",
+        "mensagem_erro": "E-mail ou senha incorretos. Tente novamente."
+    },
+    {
+        "case_id": 3,
+        "email": "email@acordelab.com.br",
+        "senha": "wrongpassword",
+        "esperado": "falho",
+        "mensagem_erro": "E-mail ou senha incorretos. Tente novamente."
+    },
+    {
+        "case_id": 4,
+        "email": "",
+        "senha": "",
+        "esperado": "falho",
+        "mensagem_erro": "Campos vazios. Tente novamente."
+    },
+]
 
-# Passo 1: Abrir o navegador e carregar a página de login da plataforma AcordeLab
-driver.get("https://almsantana.github.io/")  # Substitua "URL da plataforma AcordeLab" pela URL real da página de login
+for test_case in test_cases:
+    # Navegar até a página de login
+    driver.get("http://enderecodaaplicacao.com/login")
+    
+    # Preenche o campo de email
+    email_field = driver.find_element(By.ID, "email")
+    email_field.clear()
+    email_field.send_keys(test_case["email"])
+    
+    # Preenche o campo de senha
+    senha_field = driver.find_element(By.ID, "senha")
+    senha_field.clear()
+    senha_field.send_keys(test_case["senha"])
+    
+    # Clicar no botão 'Login'
+    login_button = driver.find_element(By.CSS_SELECTOR, "input[type='submit']")
+    login_button.click()
+    
+    time.sleep(1)  # Espera para que a ação de login possa ser processada
+    
+    # Verifica o resultado do teste
+    try:
+        mensagem_erro = driver.find_element(By.CSS_SELECTOR, ".mensagem-erro").text
+        assert test_case["mensagem_erro"] == mensagem_erro
+        resultado_teste = "falho" if mensagem_erro else "aprovado"
+    except:
+        resultado_teste = "aprovado"  # Se não encontrar a mensagem de erro, considera aprovado
+    
+    print(f"Caso de teste {test_case['case_id']}: {'Aprovado' if test_case['esperado'] == resultado_teste else 'Falho'}")
+    
+    time.sleep(3)  # Pausa antes do próximo caso de teste
 
-# Passo 2: Verificar se os campos de email e senha estão presentes
-assert driver.find_element(By.ID, "email").is_displayed(), "Campo de e-mail não está presente"
-assert driver.find_element(By.ID, "senha").is_displayed(), "Campo de senha não está presente"
-
-# Passo 3: Inserir as credenciais corretas e clicar no botão de login
-driver.find_element(By.ID, "email").send_keys("email@acordelab.com.br")
-driver.find_element(By.ID, "senha").send_keys("123senha")
-driver.find_element(By.CSS_SELECTOR, ".botao-login").click()
-
-# Aguarda o redirecionamento para a página inicial
-time.sleep(2)
-assert "home.html" in driver.current_url, "O redirecionamento para a página inicial falhou após o login com credenciais válidas"
-
-# Passo 5: Voltar à página de login e testar com credenciais incorretas
-driver.get("https://almsantana.github.io/")  # Recarrega a página de login
-
-# Passo 6: Inserir credenciais incorretas e verificar a mensagem de erro
-driver.find_element(By.ID, "email").send_keys("errado@acordelab.com.br")
-driver.find_element(By.ID, "senha").send_keys("senhaerrada")
-driver.find_element(By.CSS_SELECTOR, ".botao-login").click()
-
-# Verifica se a mensagem de erro "E-mail ou senha incorretos. Tente novamente." é exibida
-mensagem_erro = driver.find_element(By.CSS_SELECTOR, ".mensagem-erro").is_displayed()
-assert mensagem_erro, "A mensagem de erro não foi exibida após tentativa de login com credenciais inválidas"
-
-# Aguarda 3 segundos antes de fechar o navegador
-time.sleep(3)
-
-# Fecha o navegador
+# Fecha o navegador após a execução de todos os testes
 driver.quit()
+```

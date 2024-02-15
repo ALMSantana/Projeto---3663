@@ -2,12 +2,15 @@ from openai import OpenAI
 from tools import *
 from dotenv import load_dotenv
 import os
+from criador_usuarios_de_teste import *
 
 load_dotenv()
 
 cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def gerar_script_teste(cenario_teste, documento, dicionario_arquivos, assistente, thread, modelo=MODELO_GPT_4):
+    usuarios_teste = criar_usuarios_teste(cenario_teste=cenario_teste, documento=documento, dicionario=dicionario_arquivos)
+    print("\nUsuários Gerados com o modo JSON:\n", usuarios_teste)
     pergunta = f""""
         Você é um especialista em gerar scripts de teste para elaboração de casos de uso e cenários de teste.
 
@@ -27,7 +30,9 @@ def gerar_script_teste(cenario_teste, documento, dicionario_arquivos, assistente
 
         Consulte nos arquivos internos os documentos: {dicionario_arquivos[documento+".html"]}, {dicionario_arquivos[documento+".css"]}  e {dicionario_arquivos[documento+".js"]}
 
-        Além disso, considere o {cenario_teste} para elaborar o teste em selenium
+        Além disso, considere o {cenario_teste} para elaborar o teste em selenium.
+
+        Considere também inserir quatro (4) casos de teste, utilizando os resultados de     {usuarios_teste}. Faça as iterações em um laço de repetição, mostrando ao final "Aprovado" se o teste deveria logar e logou ou deveria falhar e falhou.
 
         # Saída
 
