@@ -11,7 +11,7 @@ def main():
     pagina_considerada = "index"
 
     try:
-        lista_ids_arquivos, mapa_arquivos = criar_lista_ids_app_web("AcordeLab")
+        lista_ids_arquivos, mapa_arquivos = criar_lista_ids_app_web_otimizado(pedido_usuario, diretorio="AcordeLab")
         assistente = criar_assistente(lista_ids_arquivos=lista_ids_arquivos)
         thread = criar_thread()
 

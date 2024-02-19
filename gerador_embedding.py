@@ -12,7 +12,7 @@ def gerar_embedding(texto, modelo = MODELO_EMBEDDING):
     return cliente.embeddings.create(
         input=texto,
         model= modelo
-    )
+    ).data[0].embedding
 
 def gerar_meta_descricao(documento, nome_arquivo, modelo = MODELO_GPT_4):
     prompt_sistema = f""""
@@ -28,8 +28,8 @@ def gerar_meta_descricao(documento, nome_arquivo, modelo = MODELO_GPT_4):
         Sua meta-descrição deve incluir:
 
         - Nome do Arquivo: {nome_arquivo}
-        - Propósito do Arquivo: Enfatise a ação principal do usuário do arquivo de acordo com o conteúdo
-        - Tipo de Arquivo: HTML, CSS ou JS
+        - Propósito do Arquivo: Enfatise a ação principal do usuário do arquivo de acordo com o conteúdo. Não mencione outros tipos de linguagem a não ser a utilizada para escrever o documento. Disponível no arquivo {nome_arquivo}.
+        - Tipo de Arquivo: HTML, CSS ou JS (escolha com base na linguagem usada)
 
         Como saída gere apenas a MetaDescrição que será utilizada para gerar embeddings.
     """

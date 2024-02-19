@@ -2,6 +2,9 @@ from openai import OpenAI
 from tools import *
 from dotenv import load_dotenv
 import os
+import faiss
+from gerador_embedding import *
+from faiss_projeto import *
 
 load_dotenv()
 
@@ -49,6 +52,45 @@ def criar_assistente(lista_ids_arquivos=[], modelo =MODELO_GPT_4):
     )
 
     return assistente
+
+def criar_lista_ids_app_web_otimizado(prompt, diretorio="AcordeLab"):
+    busca_html = f"Propósito: gerar tags e elementos HTML para a página: {prompt}. Tipo de arquivo: HTML."
+    busca_css = f"Propósito: gerar o estilo CSS para a página: {prompt}. Tipo de arquivo: CSS"
+    busca_js = f"Propósito: gerar o comportamento JS para a página: {prompt}. Tipo de arquivo: JS. "
+
+    descricoes = []
+    metadados = []
+    
+    lista_arquivos = []
+    lista_ids_arquivos = []
+    dicionario_arquivos = {}
+
+    if not os.path.exists(CAMINHO_DADOS_FAISS):
+        descricoes, metadados = processar_documentos()
+    else:
+        descricoes, metadados = resgatar_documentos(CAMINHO_METADADOS)
+
+    dados_faiss = criar_dados_faiss(CAMINHO_DADOS_FAISS, descricoes, metadados, CAMINHO_METADADOS)
+
+    html_identificado = buscar_documento_similar(busca_html, dados_faiss , CAMINHO_METADADOS)
+    css_identificado = buscar_documento_similar(busca_css, dados_faiss , CAMINHO_METADADOS)
+    js_identificado = buscar_documento_similar(busca_js, dados_faiss , CAMINHO_METADADOS)
+    casos_uso = "documentos/exemplos_caso_uso.txt"
+
+    lista_arquivos = [html_identificado, css_identificado, js_identificado, casos_uso]
+
+    for arquivo in lista_arquivos:
+        caminho_arquivo = arquivo
+        nome_arquivo = os.path.basename(caminho_arquivo)
+        arquivo_adicionado = cliente.files.create(
+            file=open(caminho_arquivo, "rb"),
+            purpose="assistants"
+        )
+        
+        lista_ids_arquivos.append(arquivo_adicionado.id)
+        dicionario_arquivos[nome_arquivo] = arquivo_adicionado.id
+    
+    return lista_ids_arquivos, dicionario_arquivos
 
 def criar_lista_ids_app_web(diretorio = "AcordeLab"):
     lista_ids_arquivos = []

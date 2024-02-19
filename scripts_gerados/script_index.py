@@ -1,80 +1,107 @@
+```python
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import time
 
-# Configurações do driver do navegador
-options = Options()
-options.headless = False  # Executar o navegador em modo não visual (headless) ou não
-service = Service(executable_path="driver/chromedriver.exe")  # Atualize para o caminho do seu Chromedriver
+# Inicia o serviço do Chrome
+service = Service()
 
-# Inicializa o WebDriver
-driver = webdriver.Chrome(service=service, options=options)
+# Configurações opcionais para o Chromium.
+chrome_options = Options()
+# Insira aqui qualquer configuração adicional desejada com chrome_options.add_argument
 
-# Define dados de teste
+# Instancia o webdriver com as opções definidas
+driver = webdriver.Chrome(service=service, options=chrome_options)
+
+# Casos de teste
 test_cases = [
     {
         "case_id": 1,
-        "email": "email@acordelab.com.br",
-        "senha": "123senha",
-        "esperado": "aprovado",
-        "mensagem_erro": ""
+        "description": "Login com e-mail e senha corretos.",
+        "email": "usuario@correto.com",
+        "password": "senhaCorreta123",
+        "expected_result": "Aprovado",
+        "verification_step": "Verificar se a URL após login corresponde à URL da página inicial do aplicativo.",
+        "error_message_expected": None
     },
     {
         "case_id": 2,
-        "email": "incorrectemail@acordelab.com.br",
-        "senha": "123senha",
-        "esperado": "falho",
-        "mensagem_erro": "E-mail ou senha incorretos. Tente novamente."
+        "description": "Login com e-mail correto e senha incorreta.",
+        "email": "usuario@correto.com",
+        "password": "senhaIncorreta123",
+        "expected_result": "Reprovado",
+        "verification_step": "Verificar se a mensagem de erro 'E-mail ou senha incorretos. Tente novamente.' é exibida.",
+        "error_message_expected": "E-mail ou senha incorretos. Tente novamente."
     },
     {
         "case_id": 3,
-        "email": "email@acordelab.com.br",
-        "senha": "wrongpassword",
-        "esperado": "falho",
-        "mensagem_erro": "E-mail ou senha incorretos. Tente novamente."
+        "description": "Login com e-mail incorreto e senha correta.",
+        "email": "usuario@incorreto.com",
+        "password": "senhaCorreta123",
+        "expected_result": "Reprovado",
+        "verification_step": "Verificar se a mensagem de erro 'E-mail ou senha incorretos. Tente novamente.' é exibida.",
+        "error_message_expected": "E-mail ou senha incorretos. Tente novamente."
     },
     {
         "case_id": 4,
+        "description": "Login com e-mail e senha em branco.",
         "email": "",
-        "senha": "",
-        "esperado": "falho",
-        "mensagem_erro": "E-mail ou senha incorretos. Tente novamente."
-    },
+        "password": "",
+        "expected_result": "Reprovado",
+        "verification_step": "Verificar se a mensagem de erro 'Informe seu e-mail e senha.' é exibida.",
+        "error_message_expected": "Informe seu e-mail e senha."
+    }
 ]
 
-for test_case in test_cases:
-    # Navegar até a página de login
-    driver.get("https://almsantana.github.io/")
-    time.sleep(3)
-    # Preenche o campo de email
-    email_field = driver.find_element(By.ID, "email")
-    email_field.clear()
-    email_field.send_keys(test_case["email"])
-    
-    # Preenche o campo de senha
-    senha_field = driver.find_element(By.ID, "senha")
-    senha_field.clear()
-    senha_field.send_keys(test_case["senha"])
-    
-    # Clicar no botão 'Login'
-    login_button = driver.find_element(By.CSS_SELECTOR, "input[type='submit']")
-    login_button.click()
-    
-    time.sleep(1)  # Espera para que a ação de login possa ser processada
-    
-    # Verifica o resultado do teste
-    try:
-        mensagem_erro = driver.find_element(By.CSS_SELECTOR, ".mensagem-erro").text
-        assert test_case["mensagem_erro"] == mensagem_erro
-        resultado_teste = "falho" if mensagem_erro else "aprovado"
-    except:
-        resultado_teste = "aprovado"  # Se não encontrar a mensagem de erro, considera aprovado
-    
-    print(f"Caso de teste {test_case['case_id']}: {'Aprovado' if test_case['esperado'] == resultado_teste else 'Falho'}")
-    
-    time.sleep(3)  # Pausa antes do próximo caso de teste
+# URL da aplicação
+url = "URL_DA_APLICACAO"
 
-# Fecha o navegador após a execução de todos os testes
+# Abre a URL no navegador
+driver.get(url)
+
+# Espera para garantir que a página carregou
+time.sleep(1)
+
+assert "Index - AcordeLab" in driver.title
+
+for test in test_cases:
+    # Preenche o e-mail e a senha conforme o caso de teste
+    driver.find_element(By.ID, "email").send_keys(test["email"])
+    driver.find_element(By.ID, "senha").send_keys(test["password"])
+    driver.find_element(By.CSS_SELECTOR, "input.botao-login").click()
+
+    time.sleep(1)  # Espera para a ação ser processada
+
+    # Verificação e lógica de validação de acordo com o caso de teste
+    if test["expected_result"] == "Aprovado":
+        try:
+            # Este é um placeholder da URL esperada. Adicione a URL específica do seu teste.
+            assert driver.current_url == "URL_ESPERADA"
+            print("Caso de teste ID:", test["case_id"], "Aprovado")
+        except AssertionError:
+            print("Caso de teste ID:", test["case_id"], "Reprovado")
+    else:
+        error_message = driver.find_element(By.CSS_SELECTOR, "p.mensagem-erro").text
+        if error_message == test["error_message_expected"]:
+            print("Caso de teste ID:", test["case_id"], "Aprovado")
+        else:
+            print("Caso de teste ID:", test["case_id"], "Reprovado")
+
+    # Limpa os campos para o próximo teste
+    driver.find_element(By.ID, "email").clear()
+    driver.find_element(By.ID, "senha").clear()
+
+    # Retorna para a página de login se a aplicação redirecionou para outra página após o login
+    if driver.current_url != url:
+        driver.get(url)
+
+    time.sleep(1)  # Intervalo entre os testes
+
+# Encerra o navegador com uma pausa antes do fechamento
+time.sleep(3)
 driver.quit()
+```
+
+Troque "URL_DA_APLICACAO" pela URL real onde o aplicativo está hospedado. Substitua "URL_ESPERADA" pela URL que deveria ser acessada após um login bem-sucedido. Os comentários em português estão incluídos para facilitar o entendimento do script.

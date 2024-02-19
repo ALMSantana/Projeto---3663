@@ -42,3 +42,24 @@ def adicionar_indice_embedding(dados_faiss, descricoes, metadados, caminho_metad
         json.dump(metadados, arquivo_saida, ensure_ascii=False)
 
     return dados_faiss
+
+def buscar_documento_similar(texto_consultado, dados_faiss, caminho_metadados, qtd_resultados = 1):
+    texto_consultado_embedding = np.array([gerar_embedding(texto_consultado)]).astype('float32')
+    faiss.normalize_L2(texto_consultado_embedding)
+    D, I = dados_faiss.search(texto_consultado_embedding, qtd_resultados)
+
+    with open(caminho_metadados, encoding='utf-8') as arquivo_entrada:
+        metadados = json.load(arquivo_entrada)
+
+    for i in range(qtd_resultados):
+        indice = I[0][i]
+        print(f"\nSimilaridade {i+1}: {D[0][i]}")
+        print(f"Documento: {metadados[indice]['documento']}")
+        print(f"Texto: {metadados[indice]['meta_descricao']}")
+
+    caminho_documento_escolhido = ""
+
+    if metadados[I[0][0]].get("caminho"):
+        caminho_documento_escolhido = metadados[I[0][0]].get("caminho") 
+    
+    return caminho_documento_escolhido

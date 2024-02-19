@@ -1,0 +1,52 @@
+[
+    {
+        "documento": "cursos.html",
+        "meta_descricao": "Nome do Arquivo: cursos.html\nPropósito do Arquivo: O arquivo cursos.html é projetado para exibir informações detalhadas sobre um curso específico, permitindo ao usuário acompanhar seu progresso e acessar diferentes partes do conteúdo do curso, com ênfase em vídeos e materiais de aprendizado. O usuário pode visualizar seu progresso e continuar de onde parou.\nTipo de Arquivo: HTML",
+        "caminho": "AcordeLab\\cursos.html"
+    },
+    {
+        "documento": "home.html",
+        "meta_descricao": "Nome do Arquivo: home.html\nPropósito do Arquivo: Apresentar e permitir a seleção de cursos de música online categorizados por nível e instrumento, incluindo Violão, Piano e Guitarra, além de oferecer funcionalidades de busca e acesso ao perfil do usuário.\nTipo de Arquivo: HTML",
+        "caminho": "AcordeLab\\home.html"
+    },
+    {
+        "documento": "index.html",
+        "meta_descricao": "Nome do Arquivo: index.html\nPropósito do Arquivo: Permitir aos usuários fazer login, inserindo suas credenciais de e-mail e senha.\nTipo de Arquivo: HTML",
+        "caminho": "AcordeLab\\index.html"
+    },
+    {
+        "documento": "cursos.css",
+        "meta_descricao": "Nome do Arquivo: cursos.css\nPropósito do Arquivo: O arquivo CSS \"cursos.css\" é projetado para estilizar uma plataforma de cursos online, abrangendo aspectos como a tipografia, layout de elementos como cabeçalho, perfis de usuário, contêineres de cursos, e botões de progresso, além de criar uma experiência visual atraente através de gradientes, sombras, e ajustes de imagens. A estilização foca em promover uma navegação intuitiva e engajadora para o usuário, com ênfase na organização visual dos cursos, níveis de aprendizado, e progresso do usuário.\nTipo de Arquivo: CSS",
+        "caminho": "AcordeLab\\css\\cursos.css"
+    },
+    {
+        "documento": "home.css",
+        "meta_descricao": "Nome do Arquivo: home.css\nPropósito do Arquivo: O arquivo CSS \"home.css\" tem como objetivo estilizar uma página web, provavelmente um portal ou homepage, aplicando um design moderno e responsivo. Ele define estilos para elementos como cabeçalho, barra de pesquisa, botões segmentados, grid de cursos, e rodapé, utilizando uma paleta de cores específica, fontes importadas (Inter e Roboto), e efeitos visuais como sombras e gradientes para melhorar a experiência do usuário e a interatividade na navegação.\nTipo de Arquivo: CSS",
+        "caminho": "AcordeLab\\css\\home.css"
+    },
+    {
+        "documento": "index.css",
+        "meta_descricao": "Nome do Arquivo: index.css\nPropósito do Arquivo: O arquivo CSS é projetado para estilizar uma página web, proporcionando um layout centrado e visualmente atraente com um esquema de cores baseado em gradientes de azul e detalhes em vermelho. Ele define estilos para o corpo da página, logo, seções principais, grupos de entrada, botões, links, e um rodapé fixo, além de incluir importações de fontes externas e ajustes para responsividade e interatividade visual, como hover em botões e links.\nTipo de Arquivo: CSS",
+        "caminho": "AcordeLab\\css\\index.css"
+    },
+    {
+        "documento": "reset.css",
+        "meta_descricao": "Nome do Arquivo: reset.css\nPropósito do Arquivo: O arquivo reset.css é destinado a normalizar os estilos padrão dos elementos HTML em diferentes navegadores, removendo margens, preenchimentos, bordas, e estilos de fonte padrão para garantir uma base de estilo consistente para o desenvolvimento web.\nTipo de Arquivo: CSS",
+        "caminho": "AcordeLab\\css\\reset.css"
+    },
+    {
+        "documento": "cursos.js",
+        "meta_descricao": "Nome do Arquivo: cursos.js\nPropósito do Arquivo: O arquivo cursos.js é projetado para manipular elementos da página web relacionados à exibição de cursos, atualizando dinamicamente conteúdos como títulos de vídeos, thumbnails, informações do curso (nome, nível, descrição, imagem, e duração total) com base em dados armazenados no localStorage. Adicionalmente, ajusta classes CSS de acordo com o nível do curso para personalizar a apresentação visual.\nTipo de Arquivo: JS",
+        "caminho": "AcordeLab\\js\\cursos.js"
+    },
+    {
+        "documento": "home.js",
+        "meta_descricao": "Nome do Arquivo: home.js\nPropósito do Arquivo: Este arquivo JavaScript é destinado a adicionar interatividade à página inicial de um site de cursos, permitindo aos usuários filtrar cursos por instrumento musical através de checkboxes, buscar cursos por nome ou nível através de uma barra de busca, e selecionar um curso, armazenando suas informações no localStorage antes de redirecionar o usuário para a página do curso selecionado.\nTipo de Arquivo: JS",
+        "caminho": "AcordeLab\\js\\home.js"
+    },
+    {
+        "documento": "index.js",
+        "meta_descricao": "Nome do Arquivo: index.js\nPropósito do Arquivo: Implementar a lógica de autenticação para acesso à página 'home.html' com validação de e-mail e senha.\nTipo de Arquivo: JS",
+        "caminho": "AcordeLab\\js\\index.js"
+    }
+]
